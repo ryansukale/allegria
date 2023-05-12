@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@allegria/dataviz": ["packages/dataviz/src/index.ts"]
+      "@allegria/dataviz": ["packages/dataviz/src/index.ts"],
+      "@allegria/react": ["packages/react/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

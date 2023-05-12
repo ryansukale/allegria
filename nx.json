@@ -5,7 +5,13 @@
     "default": {
       "runner": "nx-cloud",
       "options": {
-        "cacheableOperations": ["build", "lint", "test", "e2e"],
+        "cacheableOperations": [
+          "build",
+          "lint",
+          "test",
+          "e2e",
+          "build-storybook"
+        ],
         "accessToken": "ZjZhODE4NTMtZjdhYi00OWFkLWEwYWItYzNlYjZhZmU1ZTIxfHJlYWQtd3JpdGU="
       }
     }
@@ -24,6 +30,12 @@
     },
     "test": {
       "inputs": ["default", "^production"]
+    },
+    "build-storybook": {
+      "inputs": ["default", "^production", "!{projectRoot}/.storybook/**/*"]
+    },
+    "e2e": {
+      "inputs": ["default", "^production"]
     }
   },
   "namedInputs": {
@@ -32,12 +44,24 @@
       "default",
       "!{projectRoot}/.eslintrc.json",
       "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
-      "!{projectRoot}/tsconfig.spec.json"
+      "!{projectRoot}/tsconfig.spec.json",
+      "!{projectRoot}/**/*.stories.@(js|jsx|ts|tsx|mdx)",
+      "!{projectRoot}/.storybook/**/*"
     ],
     "sharedGlobals": []
   },
   "workspaceLayout": {
     "appsDir": "packages",
     "libsDir": "packages"
+  },
+  "generators": {
+    "@nx/react": {
+      "application": {
+        "babel": true
+      },
+      "library": {
+        "unitTestRunner": "vitest"
+      }
+    }
   }
 }
